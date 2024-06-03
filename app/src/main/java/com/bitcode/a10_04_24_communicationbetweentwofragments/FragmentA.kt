@@ -15,6 +15,12 @@ class FragmentA : Fragment() {
             fragmentABinding.edtName.setText(value)
         }
 
+    interface OnNameSetListener{
+        fun onNameSet(name : String)
+    }
+
+    var onNameSetListener : OnNameSetListener? = null           //reference of interface
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -27,9 +33,11 @@ class FragmentA : Fragment() {
 //            (parentFragmentManager.findFragmentById(R.id.fragmentB) as FragmentB).text1 =
 //                fragmentABinding.edtName.text.toString()
 
-            (requireActivity() as MainActivity).setDataToFragmentB(fragmentABinding.edtName.text.toString())
-        }
+            //way 2
+//            (requireActivity() as MainActivity).setDataToFragmentB(fragmentABinding.edtName.text.toString())
 
+//            onNameSetListener?.onNameSet(fragmentABinding.edtName.text.toString())
+        }
         return fragmentABinding.root
     }
 }
